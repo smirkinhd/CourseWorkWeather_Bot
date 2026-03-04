@@ -9,6 +9,52 @@
 - services/ — бизнес-логика
 - main.py — точка входа
 
+```mermaid
+graph TB
+    subgraph "Telegram"
+        TG[Telegram API]
+        User[Пользователь]
+    end
+    
+    subgraph "Ядро бота"
+        WB[WeatherBot<br/>main.py]
+        C[Config<br/>config.py]
+    end
+    
+    subgraph "Обработчики"
+        MH[MessageHandlers<br/>handlers.py]
+    end
+    
+    subgraph "Сервисы"
+        GEO[GeocoderService<br/>geocoder.py]
+        WTH[WeatherService<br/>weather.py]
+    end
+    
+    subgraph "Утилиты"
+        FMT[WeatherFormatter<br/>formatters.py]
+    end
+    
+    subgraph "Внешние API"
+        GM[Open-Meteo Geocoding<br/>geocoding-api.open-meteo.com]
+        WM[Open-Meteo Weather<br/>api.open-meteo.com]
+    end
+    
+    User <-->|Сообщения| TG
+    TG <-->|Polling| WB
+    WB -->|Инициализирует| C
+    WB -->|Создает| MH
+    WB -->|Создает| GEO
+    WB -->|Создает| WTH
+    
+    MH -->|Вызывает| GEO
+    MH -->|Вызывает| WTH
+    MH -->|Использует| FMT
+    
+    GEO -->|HTTP GET| GM
+    WTH -->|HTTP GET| WM
+    
+```
+
 ## Библиотеки
 
 - aiogram==3.26.0
