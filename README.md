@@ -66,7 +66,7 @@ graph TB
   
 ```bash
 git clone https://github.com/smirkinhd/CourseWorkWeather_Bot.git
-cd weather-bot
+cd CourseWorkWeather_Bot
 ```
 
 - Создать .env файл и разместить следующее
