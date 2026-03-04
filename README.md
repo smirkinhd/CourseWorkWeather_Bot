@@ -65,7 +65,7 @@ graph TB
 - Клонировать репозиторий
   
 ```bash
-git clone https://github.com/yourusername/weather-bot.git
+git clone https://github.com/smirkinhd/CourseWorkWeather_Bot.git
 cd weather-bot
 ```
 
